@@ -1,0 +1,134 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-display: 'Fredoka', 'Plus Jakarta Sans', system-ui, sans-serif;
+    --font-sans: 'Plus Jakarta Sans', 'DM Sans', system-ui, sans-serif;
+    --font-script: 'Sacramento', cursive;
+  }
+
+  html {
+    scroll-behavior: auto;
+    overflow-x: clip;
+    background-color: #EC3E3D;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    overflow-x: clip;
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+.font-script {
+  font-family: var(--font-script);
+}
+
+/* Smooth glass & berry drop shadows tuned for real photography */
+.bottle-shadow {
+  filter: drop-shadow(0 28px 34px rgba(68, 8, 12, 0.34))
+          drop-shadow(0 8px 14px rgba(68, 8, 12, 0.2));
+}
+
+.fruit-shadow {
+  filter: drop-shadow(0 16px 20px rgba(65, 10, 12, 0.28));
+}
+
+.fruit-shadow-soft {
+  filter: drop-shadow(0 10px 14px rgba(65, 10, 12, 0.18));
+}
+
+.bokeh-front {
+  filter: blur(7px) drop-shadow(0 20px 26px rgba(65, 10, 12, 0.22));
+}
+
+.bokeh-front-heavy {
+  filter: blur(8.5px) drop-shadow(0 22px 28px rgba(65, 10, 12, 0.24));
+}
+
+.bokeh-mid {
+  filter: blur(1.8px) drop-shadow(0 12px 16px rgba(65, 10, 12, 0.2));
+}
+
+/* Marquee animation */
+@keyframes marqueeScroll {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marqueeScroll 28s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+/* Gentle blob breath */
+@keyframes blobFloat {
+  0%, 100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(0, -10px, 0) scale(1.025);
+  }
+}
+
+.animate-blob {
+  animation: blobFloat 9s ease-in-out infinite;
+}
+
+/* Pop animation for 6-pack slot drop */
+@keyframes bottleDrop {
+  0% {
+    opacity: 0;
+    transform: translateY(-28px) scale(0.75) rotate(-8deg);
+  }
+  65% {
+    opacity: 1;
+    transform: translateY(4px) scale(1.06) rotate(3deg);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1) rotate(0deg);
+  }
+}
+
+.animate-bottle-drop {
+  animation: bottleDrop 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+/* Custom subtle scrollbars */
+::-webkit-scrollbar {
+  width: 9px;
+}
+
+::-webkit-scrollbar-track {
+  background: #FFF7F4;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(236, 62, 61, 0.35);
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(236, 62, 61, 0.65);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee,
+  .animate-blob {
+    animation: none;
+  }
+}
